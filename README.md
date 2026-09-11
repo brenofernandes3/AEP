@@ -1,3 +1,5 @@
+Nome dos Acadêmicos: Breno Felipe Fernandes, R.A: 26012266-2 - Daniel Vieira Stocco, R.A: 26012119-2 - Igor Toy, R.A:26013242-2
+
 # AEP
 Repositório criado para armazenar a documentação dos códigos presentes no sistema que serão desenvolvidos no 2º Semestre
 
