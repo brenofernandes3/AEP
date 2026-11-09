@@ -10,30 +10,30 @@ int main() {
     printf("================================\n");
 
     printf("\nInsira o nome da escola: \n");
-    scanf("%d", &cad_escola);
+    scanf(" %[^\n]", cad_escola);
 
     printf("\nInforme sua turma: \n");
     scanf("%d", &turma);
 
     printf("\nInforme o tema do projeto: \n");
-    scanf("%d", &tema);
+    scanf(" %[^\n]", tema);
 
     printf("\nInforme a data prevista: \n");
     scanf("%d", &data);
 
     printf("\nResponsavel pelo projeto: \n");
-    scanf("%d", &resp);
+    scanf(" %[^\n]", resp);
 
     printf("\n================================\n");
     printf("       CADASTRO CONCLUIDO!\n");
     printf("================================\n");
 
     printf("\n===== DADOS DO PROJETO =====\n");
-    printf("Escola: %d\n", cad_escola);
+    printf("Escola: %[^\n]\n", cad_escola);
     printf("Turma: %d\n", turma);
-    printf("Tema: %d\n", tema);
+    printf("Tema: %[^\n]\n", tema);
     printf("Data: %d\n", data);
-    printf("Responsavel: %d\n", resp);
+    printf("Responsavel: %[^\n]\n", resp);
     printf("====================================\n");
 
     return 0;
