@@ -9,31 +9,31 @@ int main() {
     printf("       CADASTRO DE PROJETO\n");
     printf("================================\n");
 
-    printf("\nInsira o nome da escola: ");
-    scanf(" %[^\n]", cad_escola);
+    printf("\nInsira o nome da escola: \n");
+    scanf("%d", &cad_escola);
 
-    printf("\nInforme sua turma: ");
+    printf("\nInforme sua turma: \n");
     scanf("%d", &turma);
 
-    printf("\nInforme o tema do projeto: ");
-    scanf(" %[^\n]", tema);
+    printf("\nInforme o tema do projeto: \n");
+    scanf("%d", &tema);
 
-    printf("\nInforme a data prevista: ");
+    printf("\nInforme a data prevista: \n");
     scanf("%d", &data);
 
-    printf("\nResponsavel pelo projeto: ");
-    scanf(" %[^\n]", resp);
+    printf("\nResponsavel pelo projeto: \n");
+    scanf("%d", &resp);
 
     printf("\n================================\n");
     printf("       CADASTRO CONCLUIDO!\n");
     printf("================================\n");
 
     printf("\n===== DADOS DO PROJETO =====\n");
-    printf("Escola: %s\n", cad_escola);
+    printf("Escola: %d\n", cad_escola);
     printf("Turma: %d\n", turma);
-    printf("Tema: %s\n", tema);
+    printf("Tema: %d\n", tema);
     printf("Data: %d\n", data);
-    printf("Responsavel: %s\n", resp);
+    printf("Responsavel: %d\n", resp);
     printf("====================================\n");
 
     return 0;
