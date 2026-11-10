@@ -1,10 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 int main() {
     char cad_escola[100], tema[100], resp[100];
     int turma, data, dia, mes, ano;
     int opcao, opcoes;
+    char situacao[50], pesquisa[100];
 
     printf("=================================== \n");
     printf("               MENU                 \n");
@@ -12,6 +14,7 @@ int main() {
     printf("1 - Inicar cadastro de PSE \n");
     printf("2 - Consulta das acoes \n");
     printf("3 - Lista de acoes cadastradas \n");
+    printf("4 - Atualizar situação \n");
     printf("=================================== \n");
     printf("Escolha uma opcao: ");
 	scanf("%d", &opcoes);	
@@ -37,6 +40,9 @@ int main() {
 
     printf("\nResponsavel pelo projeto: \n");
     scanf(" %[^\n]", resp);
+    
+    printf("\nInforme a situacao do projeto (Pendente/Cancelado/Em andamento/Concluido): \n");
+	scanf(" %49[^\n]", situacao);	
 
     printf("\n================================\n");
     printf("       CADASTRO CONCLUIDO!\n");
@@ -48,7 +54,8 @@ int main() {
     printf("Tema: %s\n", tema);
     printf("Data: %02d/%02d/%04d\n", dia, mes, ano);
     printf("Responsavel: %s\n", resp);
-    printf("====================================\n");
+    printf("Situaca: ----- %s -------", &situacao);
+    printf("\n====================================\n");
 	} else if  (opcoes == 2) {
 		
 			printf("\n===== CONSULTA DE PROJETOS =====\n");
@@ -59,7 +66,21 @@ int main() {
 	
 				printf("\nEscolha uma opcao: ");
 				scanf("%d", &opcao);
+				
+				if (opcao == 1) {
+					printf("Digite o nome da escola: ");
+					scanf(" %99[^\n]", pesquisa);
+					if (strcmp(pesquisa, cad_escola) == 0) {
+						
+						printf("\nProjeto encontrado!\n");
+					    printf("Escola: %s\n", cad_escola);
+					    printf("Tema: %s\n", tema);
+					    printf("Situacao: %s\n", situacao);
+					} else {
+						printf("Projeto não encontrado!");
+					}	
 				}
+				} 
     
     
        return 0;
