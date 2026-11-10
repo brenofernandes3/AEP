@@ -14,13 +14,13 @@ int main() {
 
     printf("\nInforme sua turma: \n");
     scanf("%d", &turma);
+    getchar();
 
     printf("\nInforme o tema do projeto: \n");
-    scanf(" %[^\n]", tema);
+    scanf(" %99[^\n]", tema);
 
     printf("\nInforme a data prevista: \n");
     scanf("%d", &data);
-
     printf("\nResponsavel pelo projeto: \n");
     scanf(" %[^\n]", resp);
 
@@ -29,11 +29,11 @@ int main() {
     printf("================================\n");
 
     printf("\n===== DADOS DO PROJETO =====\n");
-    printf("Escola: %[^\n]\n", cad_escola);
+    printf("Escola: %s\n", cad_escola);
     printf("Turma: %d\n", turma);
-    printf("Tema: %[^\n]\n", tema);
+    printf("Tema: %s\n", tema);
     printf("Data: %d\n", data);
-    printf("Responsavel: %[^\n]\n", resp);
+    printf("Responsavel: %s\n", resp);
     printf("====================================\n");
 
     return 0;
