@@ -4,6 +4,19 @@
 int main() {
     char cad_escola[100], tema[100], resp[100];
     int turma, data, dia, mes, ano;
+    int opcao, opcoes;
+
+    printf("=================================== \n");
+    printf("               MENU                 \n");
+    printf("=================================== \n");
+    printf("1 - Inicar cadastro de PSE \n");
+    printf("2 - Consulta das acoes \n");
+    printf("3 - Lista de acoes cadastradas \n");
+    printf("=================================== \n");
+    printf("Escolha uma opcao: ");
+	scanf("%d", &opcoes);	
+    
+    if (opcoes == 1) {
 
     printf("\n================================\n");
     printf("       CADASTRO DE PROJETO\n");
@@ -36,6 +49,18 @@ int main() {
     printf("Data: %02d/%02d/%04d\n", dia, mes, ano);
     printf("Responsavel: %s\n", resp);
     printf("====================================\n");
-
-    return 0;
+	} else if  (opcoes == 2) {
+		
+			printf("\n===== CONSULTA DE PROJETOS =====\n");
+			printf("1 - Pesquisar por escola\n");
+			printf("2 - Pesquisar por tema\n");
+			printf("3 - Listar todos os projetos\n");
+			printf("0 - Voltar ao menu principal\n");
+	
+				printf("\nEscolha uma opcao: ");
+				scanf("%d", &opcao);
+				}
+    
+    
+       return 0;
 }
