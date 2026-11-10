@@ -19,8 +19,8 @@ int main() {
     if (opcoes == 1) {
 
     printf("\n================================\n");
-    printf("       CADASTRO DE PROJETO\n");
-    printf("================================\n");
+    printf("       CADASTRO DE PROJETO        \n");
+    printf("==================================\n");
 
     printf("\nInsira o nome da escola: \n");
     scanf(" %[^\n]", cad_escola);
