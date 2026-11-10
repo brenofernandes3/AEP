@@ -3,7 +3,7 @@
 
 int main() {
     char cad_escola[100], tema[100], resp[100];
-    int turma, data;
+    int turma, data, dia, mes, ano;
 
     printf("\n================================\n");
     printf("       CADASTRO DE PROJETO\n");
@@ -20,7 +20,8 @@ int main() {
     scanf(" %99[^\n]", tema);
 
     printf("\nInforme a data prevista: \n");
-    scanf("%d", &data);
+    scanf("%d/%d/%d", &dia, &mes, &ano);
+
     printf("\nResponsavel pelo projeto: \n");
     scanf(" %[^\n]", resp);
 
@@ -32,7 +33,7 @@ int main() {
     printf("Escola: %s\n", cad_escola);
     printf("Turma: %d\n", turma);
     printf("Tema: %s\n", tema);
-    printf("Data: %d\n", data);
+    printf("Data: %02d/%02d/%04d\n", dia, mes, ano);
     printf("Responsavel: %s\n", resp);
     printf("====================================\n");
 
