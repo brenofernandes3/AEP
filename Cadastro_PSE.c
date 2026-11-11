@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -11,77 +12,116 @@ int main() {
     printf("=================================== \n");
     printf("               MENU                 \n");
     printf("=================================== \n");
-    printf("1 - Inicar cadastro de PSE \n");
+    printf("1 - Iniciar cadastro de PSE \n");
     printf("2 - Consulta das acoes \n");
     printf("3 - Lista de acoes cadastradas \n");
-    printf("4 - Atualizar situação \n");
+    printf("4 - Atualizar situacao \n");
     printf("=================================== \n");
     printf("Escolha uma opcao: ");
-	scanf("%d", &opcoes);	
-    
+    scanf("%d", &opcoes);
+
     if (opcoes == 1) {
 
-    printf("\n================================\n");
-    printf("       CADASTRO DE PROJETO        \n");
-    printf("==================================\n");
+        printf("\n================================\n");
+        printf("       CADASTRO DE PROJETO        \n");
+        printf("==================================\n");
 
-    printf("\nInsira o nome da escola: \n");
-    scanf(" %[^\n]", cad_escola);
+        printf("\nInsira o nome da escola: \n");
+        scanf(" %[^\n]", cad_escola);
 
-    printf("\nInforme sua turma: \n");
-    scanf("%d", &turma);
-    getchar();
+        printf("\nInforme sua turma: \n");
+        scanf("%d", &turma);
+        getchar();
 
-    printf("\nInforme o tema do projeto: \n");
-    scanf(" %99[^\n]", tema);
+        printf("\nInforme o tema do projeto: \n");
+        scanf(" %99[^\n]", tema);
 
-    printf("\nInforme a data prevista: \n");
-    scanf("%d/%d/%d", &dia, &mes, &ano);
+        printf("\nInforme a data prevista: \n");
+        scanf("%d/%d/%d", &dia, &mes, &ano);
 
-    printf("\nResponsavel pelo projeto: \n");
-    scanf(" %[^\n]", resp);
-    
-    printf("\nInforme a situacao do projeto (Pendente/Cancelado/Em andamento/Concluido): \n");
-	scanf(" %49[^\n]", situacao);	
+        printf("\nResponsavel pelo projeto: \n");
+        scanf(" %[^\n]", resp);
 
-    printf("\n================================\n");
-    printf("       CADASTRO CONCLUIDO!\n");
-    printf("================================\n");
+        printf("\nInforme a situacao do projeto (Pendente/Cancelado/Em andamento/Concluido): \n");
+        scanf(" %49[^\n]", situacao);
 
-    printf("\n===== DADOS DO PROJETO =====\n");
-    printf("Escola: %s\n", cad_escola);
-    printf("Turma: %d\n", turma);
-    printf("Tema: %s\n", tema);
-    printf("Data: %02d/%02d/%04d\n", dia, mes, ano);
-    printf("Responsavel: %s\n", resp);
-    printf("Situaca: ----- %s -------", &situacao);
-    printf("\n====================================\n");
-	} else if  (opcoes == 2) {
-		
-			printf("\n===== CONSULTA DE PROJETOS =====\n");
-			printf("1 - Pesquisar por escola\n");
-			printf("2 - Pesquisar por tema\n");
-			printf("3 - Listar todos os projetos\n");
-			printf("0 - Voltar ao menu principal\n");
-	
-				printf("\nEscolha uma opcao: ");
-				scanf("%d", &opcao);
-				
-				if (opcao == 1) {
-					printf("Digite o nome da escola: ");
-					scanf(" %99[^\n]", pesquisa);
-					if (strcmp(pesquisa, cad_escola) == 0) {
-						
-						printf("\nProjeto encontrado!\n");
-					    printf("Escola: %s\n", cad_escola);
-					    printf("Tema: %s\n", tema);
-					    printf("Situacao: %s\n", situacao);
-					} else {
-						printf("Projeto não encontrado!");
-					}	
-				}
-				} 
-    
-    
-       return 0;
+        printf("\n================================\n");
+        printf("       CADASTRO CONCLUIDO!\n");
+        printf("================================\n");
+
+        printf("\n===== DADOS DO PROJETO =====\n");
+        printf("Escola: %s\n", cad_escola);
+        printf("Turma: %d\n", turma);
+        printf("Tema: %s\n", tema);
+        printf("Data: %02d/%02d/%04d\n", dia, mes, ano);
+        printf("Responsavel: %s\n", resp);
+        printf("Situacao: ----- %s -------", situacao);
+        printf("\n====================================\n");
+
+    }
+
+    else if (opcoes == 2) {
+
+        printf("\n===== CONSULTA DE PROJETOS =====\n");
+        printf("1 - Pesquisar por escola\n");
+        printf("2 - Pesquisar por tema\n");
+        printf("0 - Voltar ao menu principal\n");
+
+        printf("\nEscolha uma opcao: ");
+        scanf("%d", &opcao);
+        getchar();
+
+        if (opcao == 1) {
+
+            printf("\nDigite o nome da escola: ");
+            scanf(" %99[^\n]", pesquisa);
+
+            if (strcmp(pesquisa, cad_escola) == 0) {
+
+                printf("\nProjeto encontrado!\n");
+                printf("Escola: %s\n", cad_escola);
+                printf("Tema: %s\n", tema);
+                printf("Turma: %d\n", turma);
+                printf("Data: %02d/%02d/%04d\n", dia, mes, ano);
+                printf("Responsavel: %s\n", resp);
+                printf("Situacao: %s\n", situacao);
+
+            } else {
+                printf("\nProjeto nao encontrado!\n");
+            }
+
+        }
+
+        else if (opcao == 2) {
+
+            printf("\nDigite o tema do projeto: ");
+            scanf(" %99[^\n]", pesquisa);
+
+            if (strcmp(pesquisa, tema) == 0) {
+
+                printf("\nProjeto encontrado!\n");
+                printf("Escola: %s\n", cad_escola);
+                printf("Tema: %s\n", tema);
+                printf("Turma: %d\n", turma);
+                printf("Data: %02d/%02d/%04d\n", dia, mes, ano);
+                printf("Responsavel: %s\n", resp);
+                printf("Situacao: %s\n", situacao);
+
+            } else {
+                printf("\nProjeto nao encontrado!\n");
+            }
+
+        }
+
+        else if (opcao == 0) {
+            printf("\nVoltando ao menu principal...\n");
+        }
+
+        else {
+            printf("\nOpcao invalida!\n");
+        }
+
+    }
+
+    return 0;
 }
