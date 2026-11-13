@@ -20,6 +20,8 @@ int main() {
     int total_acoes = 0;
     int total_participantes = 0;
     int total_concluidas = 0;
+	int total_andamento = 0;
+	int total_pendentes = 0;
 
     struct Cadastro cadastro[100];
 
@@ -46,8 +48,8 @@ int main() {
         printf("Escolha uma opcao: ");
         scanf("%d", &opcoes);
 
-        // CADASTRO DOS PROJETOS
-        if (opcoes == 1) {
+        
+        if (opcoes == 1) {                                  // CADASTRO DOS PROJETOS
 
             if (total_acoes >= 100) {
 
@@ -312,29 +314,46 @@ int main() {
         }
 
         // RELATORIO GERAL
-        else if (opcoes == 5) {
+		else if (opcoes == 5) {
+		
+		    total_concluidas = 0;
+		    total_andamento = 0;
+		    total_pendentes = 0;
+		
+		    for (i = 0; i < total_acoes; i++) {
+		
+		        if (cadastro[i].situacao == 1) {
+		            total_concluidas++;
+		        }
+		
+		        else if (cadastro[i].situacao == 2) {
+		            total_andamento++;
+		        }
+		
+		        else if (cadastro[i].situacao == 3) {
+		            total_pendentes++;
+		        }
+		    }
+		
+		    printf("\n===================================\n");
+		    printf("          RELATORIO GERAL          \n");
+		    printf("===================================\n");
+		
+		    printf("Total de acoes cadastradas: %d\n", total_acoes);
+		
+		    printf("\n===== SITUACAO DAS ACOES =====\n");
+		
+		    printf("Acoes concluidas: %d\n", total_concluidas);
+		
+		    printf("Acoes em andamento: %d\n", total_andamento);
+		
+		    printf("Acoes pendentes: %d\n", total_pendentes);
+		
+		    printf("\nTotal de participantes: %d\n", total_participantes);
+		
+		    printf("===================================\n");
+		}
 
-            total_concluidas = 0;
-
-            for (i = 0; i < total_acoes; i++) {
-
-                if (cadastro[i].situacao == 1) {
-                    total_concluidas++;
-                }
-            }
-
-            printf("\n===================================\n");
-            printf("          RELATORIO GERAL          \n");
-            printf("===================================\n");
-
-            printf("Total de acoes cadastradas: %d\n", total_acoes);
-
-            printf("Total de acoes concluidas: %d\n", total_concluidas);
-
-            printf("Total de participantes: %d\n", total_participantes);
-
-            printf("===================================\n");
-        }
 
         else if (opcoes == 0) {
 
