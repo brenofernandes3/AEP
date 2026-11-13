@@ -1,27 +1,35 @@
 
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-struct Cadastro { // Sruct serve para criar uma estrutura onde dentro de uma unica variável podemos armazenar diversar infos
+struct Cadastro {
     char escola[100];
     int turma;
     char tema[100];
     int dia, mes, ano;
     char responsavel[100];
-    char situacao[50];
+    int situacao;
+    int participantes;
 };
 
 int main() {
 
-    struct Cadastro cadastro;
+    int total_acoes = 0;
+    int total_participantes = 0;
+    int total_concluidas = 0;
+
+    struct Cadastro cadastro[100];
 
     char cad_escola[100], tema[100], resp[100];
     int turma, dia, mes, ano;
     int opcao, opcoes;
-    char situacao[50], pesquisa[100];
+    int i, encontrado, numero;
 
-    int cadastrado = 0;
+    int situacao, pesquisa_situacao;
+    char pesquisa[100];
 
     do {
 
@@ -32,70 +40,104 @@ int main() {
         printf("2 - Consulta das acoes \n");
         printf("3 - Lista de acoes cadastradas \n");
         printf("4 - Atualizar situacao \n");
+        printf("5 - Relatorio geral \n");
         printf("0 - Sair \n");
         printf("=================================== \n");
         printf("Escolha uma opcao: ");
         scanf("%d", &opcoes);
 
-        // CAadastro do projeto
+        // CADASTRO DOS PROJETOS
         if (opcoes == 1) {
 
-            printf("\n================================\n");
-            printf("       CADASTRO DE PROJETO      \n");
-            printf("================================\n");
+            if (total_acoes >= 100) {
 
-            printf("\nInsira o nome da escola: \n");
-            scanf(" %99[^\n]", cad_escola);
+                printf("\nLimite de cadastros atingido!\n");
 
-            printf("\nInforme sua turma: \n");
-            scanf("%d", &turma);
+            } else {
 
-            printf("\nInforme o tema do projeto: \n");
-            scanf(" %99[^\n]", tema);
+                printf("\n================================\n");
+                printf("       CADASTRO DE PROJETO      \n");
+                printf("================================\n");
 
-            printf("\nInforme a data prevista (dd/mm/aaaa): \n");
-            scanf("%d/%d/%d", &dia, &mes, &ano);
+                printf("\nInsira o nome da escola: \n");
+                scanf(" %99[^\n]", cad_escola);
 
-            printf("\nResponsavel pelo projeto: \n");
-            scanf(" %99[^\n]", resp);
+                printf("\nInforme sua turma: \n");
+                scanf("%d", &turma);
 
-            printf("\nInforme a situacao do projeto: \n");
-            scanf(" %49[^\n]", situacao);
+                printf("\nInforme o tema do projeto: \n");
+                scanf(" %99[^\n]", tema);
 
-            strcpy(cadastro.escola, cad_escola);
-            cadastro.turma = turma;
-            strcpy(cadastro.tema, tema);
+                printf("\nInforme a quantidade de participantes: \n");
+                scanf("%d", &cadastro[total_acoes].participantes);
 
-            cadastro.dia = dia;
-            cadastro.mes = mes;
-            cadastro.ano = ano;
+                printf("\nInforme a data prevista (dd/mm/aaaa): \n");
+                scanf("%d/%d/%d", &dia, &mes, &ano);
 
-            strcpy(cadastro.responsavel, resp);
-            strcpy(cadastro.situacao, situacao);
+                printf("\nResponsavel pelo projeto: \n");
+                scanf(" %99[^\n]", resp);
 
-            cadastrado = 1;
+                printf("\nInforme a situacao do projeto: \n");
+                printf("1 - Concluida\n");
+                printf("2 - Em andamento\n");
+                printf("3 - Pendente\n");
+                scanf("%d", &situacao);
 
+                while (situacao < 1 || situacao > 3) {
+                    printf("\nSituacao invalida! Escolha entre 1 e 3: ");
+                    scanf("%d", &situacao);
+                }
 
-            printf("\n================================\n");
-            printf("       CADASTRO CONCLUIDO!\n");
-            printf("================================\n");
+                strcpy(cadastro[total_acoes].escola, cad_escola);
+                cadastro[total_acoes].turma = turma;
+                strcpy(cadastro[total_acoes].tema, tema);
 
-            printf("\n===== DADOS DO PROJETO =====\n");
-            printf("Escola: %s\n", cadastro.escola);
-            printf("Turma: %d\n", cadastro.turma);
-            printf("Tema: %s\n", cadastro.tema);
-            printf("Data: %02d/%02d/%04d\n",
-                   cadastro.dia, cadastro.mes, cadastro.ano);
-            printf("Responsavel: %s\n", cadastro.responsavel);
-            printf("Situacao: %s\n", cadastro.situacao);
-            printf("====================================\n");
+                cadastro[total_acoes].dia = dia;
+                cadastro[total_acoes].mes = mes;
+                cadastro[total_acoes].ano = ano;
 
+                strcpy(cadastro[total_acoes].responsavel, resp);
+
+                cadastro[total_acoes].situacao = situacao;
+
+                total_participantes += cadastro[total_acoes].participantes;
+
+                total_acoes++;
+
+                printf("\n================================\n");
+                printf("       CADASTRO CONCLUIDO!\n");
+                printf("================================\n");
+
+                printf("\n===== DADOS DO PROJETO =====\n");
+                printf("Escola: %s\n", cadastro[total_acoes - 1].escola);
+                printf("Turma: %d\n", cadastro[total_acoes - 1].turma);
+                printf("Tema: %s\n", cadastro[total_acoes - 1].tema);
+                printf("Participantes: %d\n", cadastro[total_acoes - 1].participantes);
+
+                printf("Data: %02d/%02d/%04d\n",
+                       cadastro[total_acoes - 1].dia,
+                       cadastro[total_acoes - 1].mes,
+                       cadastro[total_acoes - 1].ano);
+
+                printf("Responsavel: %s\n", cadastro[total_acoes - 1].responsavel);
+
+                printf("Situacao: ");
+                if (situacao == 1) {
+                    printf("Concluida\n");
+                }
+                else if (situacao == 2) {
+                    printf("Em andamento\n");
+                }
+                else {
+                    printf("Pendente\n");
+                }
+            }
         }
 
-        // Consulta dos projetos cadastrados
+        // CONSULTA DOS PROJETOS
         else if (opcoes == 2) {
 
-            if (cadastrado == 0) {
+            if (total_acoes == 0) {
 
                 printf("\nNenhum projeto cadastrado!\n");
 
@@ -111,58 +153,84 @@ int main() {
 
                 if (opcao == 1) {
 
-                    
-    printf("\nDigite o nome da escola: ");
-    scanf(" %99[^\n]", pesquisa);
+                    printf("\nDigite o nome da escola: ");
+                    scanf(" %99[^\n]", pesquisa);
 
-			    if (strcmp(pesquisa, cadastro.escola) == 0) {
-			
-			        printf("\nProjeto encontrado!\n");
-			        printf("Escola: %s\n", cadastro.escola);
-			        printf("Tema: %s\n", cadastro.tema);
-			        printf("Turma: %d\n", cadastro.turma);
-			        printf("Data: %02d/%02d/%04d\n",
-			               cadastro.dia, cadastro.mes, cadastro.ano);
-			        printf("Responsavel: %s\n", cadastro.responsavel);
-			        printf("Situacao: %s\n", cadastro.situacao);
-			
-			    } else {
-			
-			        printf("\nProjeto nao encontrado!\n");
-			
-			    }
-			}
+                    encontrado = 0;
+
+                    for (i = 0; i < total_acoes; i++) {
+
+                        if (strcmp(pesquisa, cadastro[i].escola) == 0) {
+
+                            printf("\nProjeto encontrado!\n");
+                            printf("Escola: %s\n", cadastro[i].escola);
+                            printf("Tema: %s\n", cadastro[i].tema);
+                            printf("Turma: %d\n", cadastro[i].turma);
+                            printf("Participantes: %d\n", cadastro[i].participantes);
+
+                            printf("Situacao: ");
+                            if (cadastro[i].situacao == 1) {
+                                printf("Concluida\n");
+                            }
+                            else if (cadastro[i].situacao == 2) {
+                                printf("Em andamento\n");
+                            }
+                            else {
+                                printf("Pendente\n");
+                            }
+
+                            encontrado = 1;
+                        }
+                    }
+
+                    if (encontrado == 0) {
+                        printf("\nProjeto nao encontrado!\n");
+                    }
+                }
 
                 else if (opcao == 2) {
-			    printf("\nDigite o tema do projeto: ");
-			    scanf(" %99[^\n]", pesquisa);
-			
-			    if (strcmp(pesquisa, cadastro.tema) == 0) {
-			
-			        printf("\nProjeto encontrado!\n");
-			        printf("Escola: %s\n", cadastro.escola);
-			        printf("Tema: %s\n", cadastro.tema);
-			        printf("Turma: %d\n", cadastro.turma);
-			        printf("Data: %02d/%02d/%04d\n",
-			               cadastro.dia, cadastro.mes, cadastro.ano);
-			        printf("Responsavel: %s\n", cadastro.responsavel);
-			        printf("Situacao: %s\n", cadastro.situacao);
-			
-			    } else {
-			
-			        printf("\nProjeto nao encontrado!\n");
-			
-			    }
-			}
 
+                    printf("\nDigite o tema do projeto: ");
+                    scanf(" %99[^\n]", pesquisa);
+
+                    encontrado = 0;
+
+                    for (i = 0; i < total_acoes; i++) {
+
+                        if (strcmp(pesquisa, cadastro[i].tema) == 0) {
+
+                            printf("\nProjeto encontrado!\n");
+                            printf("Escola: %s\n", cadastro[i].escola);
+                            printf("Tema: %s\n", cadastro[i].tema);
+                            printf("Turma: %d\n", cadastro[i].turma);
+                            printf("Participantes: %d\n", cadastro[i].participantes);
+
+                            printf("Situacao: ");
+                            if (cadastro[i].situacao == 1) {
+                                printf("Concluida\n");
+                            }
+                            else if (cadastro[i].situacao == 2) {
+                                printf("Em andamento\n");
+                            }
+                            else {
+                                printf("Pendente\n");
+                            }
+
+                            encontrado = 1;
+                        }
+                    }
+
+                    if (encontrado == 0) {
+                        printf("\nProjeto nao encontrado!\n");
+                    }
+                }
             }
-
         }
 
         // LISTA DE PROJETOS
         else if (opcoes == 3) {
 
-            if (cadastrado == 0) {
+            if (total_acoes == 0) {
 
                 printf("\nNenhum projeto cadastrado!\n");
 
@@ -170,36 +238,102 @@ int main() {
 
                 printf("\n===== PROJETOS CADASTRADOS =====\n");
 
-                printf("Escola: %s\n", cadastro.escola);
-                printf("Turma: %d\n", cadastro.turma);
-                printf("Tema: %s\n", cadastro.tema);
-                printf("Data: %02d/%02d/%04d\n",
-                       cadastro.dia, cadastro.mes, cadastro.ano);
-                printf("Responsavel: %s\n", cadastro.responsavel);
-                printf("Situacao: %s\n", cadastro.situacao);
+                for (i = 0; i < total_acoes; i++) {
 
+                    printf("\n===== ACAO %d =====\n", i + 1);
+
+                    printf("Escola: %s\n", cadastro[i].escola);
+                    printf("Turma: %d\n", cadastro[i].turma);
+                    printf("Tema: %s\n", cadastro[i].tema);
+                    printf("Participantes: %d\n", cadastro[i].participantes);
+
+                    printf("Data: %02d/%02d/%04d\n",
+                           cadastro[i].dia, cadastro[i].mes, cadastro[i].ano);
+
+                    printf("Responsavel: %s\n", cadastro[i].responsavel);
+
+                    printf("Situacao: ");
+                    if (cadastro[i].situacao == 1) {
+                        printf("Concluida\n");
+                    }
+                    else if (cadastro[i].situacao == 2) {
+                        printf("Em andamento\n");
+                    }
+                    else {
+                        printf("Pendente\n");
+                    }
+                }
             }
-
         }
 
+        // ATUALIZAR SITUACAO
         else if (opcoes == 4) {
 
-            if (cadastrado == 0) {
+            if (total_acoes == 0) {
 
                 printf("\nNenhum projeto cadastrado!\n");
 
             } else {
 
                 printf("\n===== ATUALIZAR SITUACAO =====\n");
-                printf("Informe a nova situacao: ");
-                scanf(" %49[^\n]", situacao);
 
-                strcpy(cadastro.situacao, situacao);
+                printf("\nDigite o numero da acao que deseja atualizar:\n");
 
-                printf("\nSituacao atualizada com sucesso!\n");
-                printf("Nova situacao: %s\n", cadastro.situacao);
+                for (i = 0; i < total_acoes; i++) {
+                    printf("%d - %s | %s\n", i + 1,
+                           cadastro[i].escola, cadastro[i].tema);
+                }
+
+                scanf("%d", &numero);
+
+                if (numero >= 1 && numero <= total_acoes) {
+
+                    printf("\nInforme a nova situacao:\n");
+                    printf("1 - Concluida\n");
+                    printf("2 - Em andamento\n");
+                    printf("3 - Pendente\n");
+
+                    scanf("%d", &pesquisa_situacao);
+
+                    while (pesquisa_situacao < 1 || pesquisa_situacao > 3) {
+                        printf("\nSituacao invalida! Escolha entre 1 e 3: ");
+                        scanf("%d", &pesquisa_situacao);
+                    }
+
+                    cadastro[numero - 1].situacao = pesquisa_situacao;
+
+                    printf("\nSituacao atualizada com sucesso!\n");
+
+                } else {
+
+                    printf("\nNumero de acao invalido!\n");
+                }
+            }
+        }
+
+        // RELATORIO GERAL
+        else if (opcoes == 5) {
+
+            total_concluidas = 0;
+
+            for (i = 0; i < total_acoes; i++) {
+
+                if (cadastro[i].situacao == 1) {
+                    total_concluidas++;
+                }
             }
 
+            printf("\n===================================\n");
+            printf("          RELATORIO GERAL          \n");
+            printf("===================================\n");
+
+            printf("Total de acoes cadastradas: %d\n", total_acoes);
+
+            printf("Total de acoes concluidas: %d\n", total_concluidas);
+
+            printf("Total de participantes: %d\n", total_participantes);
+
+            printf("===================================\n");
         }
 
         else if (opcoes == 0) {
@@ -214,8 +348,9 @@ int main() {
 
         }
 
-        /
-    } while (opcoes != 0); // repete o codigo 
- 
+    } while (opcoes != 0);
+
     return 0;
 }
+
+
